@@ -5,4 +5,6 @@ export * from "./ourStory";
 export * from "./faq";
 export * from "./marquee";
 export * from "./facilities";
+export * from "./membership";
+export * from "./trainers";
 export * from "./contact";

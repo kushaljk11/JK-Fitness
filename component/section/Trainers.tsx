@@ -4,11 +4,10 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { facilitiesContent } from "@/data/facilities";
+import { trainersContent } from "@/data/trainers";
 
-export const Facilities: React.FC = () => {
-  const { eyebrow, heading, heading2, description, facilities } =
-    facilitiesContent;
+export const Trainers: React.FC = () => {
+  const { eyebrow, heading, heading2, description, trainers } = trainersContent;
 
   const sectionRef = useRef<HTMLElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
@@ -68,7 +67,7 @@ export const Facilities: React.FC = () => {
             opacity: 1,
             y: 0,
             duration: 0.65,
-            stagger: 0.1,
+            stagger: 0.12,
             ease: "power2.out",
             scrollTrigger: {
               trigger: cardsRef.current,
@@ -84,7 +83,7 @@ export const Facilities: React.FC = () => {
   }, []);
 
   return (
-    <section id="facility" ref={sectionRef} className="relative bg-bg">
+    <section id="trainer" ref={sectionRef} className="relative bg-bg">
       <div className="w-full px-16 py-15">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-12 mb-10 md:mb-14">
           <div ref={headerRef} className="shrink-0">
@@ -99,41 +98,46 @@ export const Facilities: React.FC = () => {
             </h2>
           </div>
 
-          <div ref={descRef} className="max-w-2xl md:text-right">
+          <div ref={descRef} className="max-w-xl md:text-right">
             <p className="text-zinc-400 text-sm md:text-[15px] font-normal leading-relaxed">
-              Train with modern equipment and dedicated workout spaces designed to help{" "}
+              Train with passionate coaches who push your limits, perfect your form, and help{" "}
               <br className="hidden md:inline" />
-              you perform better, train safely, and achieve your fitness goals.
+              you grow stronger every day.
             </p>
           </div>
         </div>
 
         <div
           ref={cardsRef}
-          className="grid grid-cols-1 md:grid-cols-4 gap-6 items-stretch"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-stretch"
         >
-          {facilities.map((item) => (
+          {trainers.map((trainer) => (
             <div
-              key={item.id}
-              className="group flex flex-col overflow-hidden cursor-pointer"
+              key={trainer.id}
+              className="group relative flex flex-col overflow-hidden bg-secondary-bg cursor-pointer"
             >
-              <div className="relative w-full h-56 md:h-64 overflow-hidden bg-secondary-bg">
+              <div className="relative w-full h-115 md:h-130 overflow-hidden">
                 <Image
-                  src={item.image}
-                  alt={item.title}
+                  src={trainer.image}
+                  alt={trainer.name}
                   fill
-                  sizes="(max-width: 768px) 100vw, 25vw"
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover object-top grayscale contrast-[1.05] brightness-90 group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-out"
                 />
-              </div>
 
-              <div className="relative bg-secondary-bg px-5 py-4.5 flex-1 flex flex-col justify-center border-l-2 border-b border-primary/60 group-hover:bg-primary group-hover:border-l-4 group-hover:border-l-white group-hover:border-b-primary transition-all duration-300">
-                <h3 className="text-white text-base md:text-lg font-semibold tracking-wide leading-tight">
-                  {item.title}
-                </h3>
-                <p className="text-zinc-400 group-hover:text-white/90 text-xs md:text-sm font-normal mt-1 leading-snug transition-colors duration-300">
-                  {item.subtitle}
-                </p>
+                <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent pointer-events-none" />
+
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7 flex flex-col justify-end z-10">
+                  <p className="text-primary text-[11px] md:text-xs font-semibold tracking-wider uppercase mb-1">
+                    {trainer.role}
+                  </p>
+                  <h3 className="text-white text-xl md:text-2xl font-bold tracking-tight mb-1">
+                    {trainer.name}
+                  </h3>
+                  <p className="text-zinc-300 text-xs md:text-sm font-normal">
+                    {trainer.quote}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
@@ -143,4 +147,4 @@ export const Facilities: React.FC = () => {
   );
 };
 
-export default Facilities;
+export default Trainers;
