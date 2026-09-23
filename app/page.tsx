@@ -5,6 +5,8 @@ import Navbar from "@/component/layout/Navbar";
 import Hero from "@/component/section/Hero";
 import WhyUs from "@/component/section/WhyUs";
 import OurStory from "@/component/section/OurStory";
+import Marquee from "@/component/section/Marquee";
+import Facilities from "@/component/section/Facilities";
 import Faq from "@/component/section/Faq";
 import ContactDrawer from "@/component/shared/ContactDrawer";
 import SmoothScrollProvider from "@/component/shared/SmoothScrollProvider";
@@ -19,6 +21,8 @@ export default function Home() {
         <Hero onOpenContact={() => setIsContactOpen(true)} />
         <WhyUs />
         <OurStory />
+        <Marquee />
+        <Facilities />
         <Faq />
         <ContactDrawer
           isOpen={isContactOpen}

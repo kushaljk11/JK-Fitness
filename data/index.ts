@@ -3,4 +3,6 @@ export * from "./hero";
 export * from "./whyUs";
 export * from "./ourStory";
 export * from "./faq";
+export * from "./marquee";
+export * from "./facilities";
 export * from "./contact";
