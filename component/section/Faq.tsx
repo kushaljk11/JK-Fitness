@@ -69,7 +69,7 @@ export default function Faq() {
 
   return (
     <section ref={sectionRef} className="bg-bg">
-      <div className="mx-auto grid max-w-8xl grid-cols-1 gap-10 px-6 py-10 md:grid-cols-2 md:gap-16 md:px-16 md:py-14">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 px-16 py-10 md:py-14">
         {/* Left: heading */}
         <div ref={headingRef}>
           <p className="text-sm font-medium text-primary">{eyebrow}</p>

@@ -222,8 +222,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
               <div
                 key={index}
                 className={`flex flex-col md:flex-row items-center justify-center text-center md:text-left gap-1 md:gap-2.5 ${index !== stats.length - 1
-                    ? "md:border-r md:border-zinc-800"
-                    : ""
+                  ? "md:border-r md:border-zinc-800"
+                  : ""
                   }`}
               >
                 <span className="text-primary text-xl md:text-2xl font-normal leading-none">
