@@ -75,3 +75,14 @@ html {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+.outline-number {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.35);
+  paint-order: stroke fill;
+  transition: -webkit-text-stroke-color 0.3s ease;
+}
+
+.group:hover .outline-number {
+  -webkit-text-stroke-color: #c72c41;
+}

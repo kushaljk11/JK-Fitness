@@ -1,18 +1,17 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { trainersContent } from "@/data/trainers";
+import { howItWorksContent } from "@/data/howItWorks";
 
-export const Trainers: React.FC = () => {
-  const { eyebrow, heading, heading2, description, trainers } = trainersContent;
+export const HowItWorks: React.FC = () => {
+  const { eyebrow, heading, heading2, description, steps } = howItWorksContent;
 
   const sectionRef = useRef<HTMLElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
   const descRef = useRef<HTMLDivElement | null>(null);
-  const cardsRef = useRef<HTMLDivElement | null>(null);
+  const stepsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -59,18 +58,18 @@ export const Trainers: React.FC = () => {
         );
       }
 
-      if (cardsRef.current) {
+      if (stepsRef.current) {
         gsap.fromTo(
-          cardsRef.current.children,
+          stepsRef.current.children,
           { opacity: 0, y: 35 },
           {
             opacity: 1,
             y: 0,
             duration: 0.65,
-            stagger: 0.12,
+            stagger: 0.1,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: cardsRef.current,
+              trigger: stepsRef.current,
               start: "top 80%",
               toggleActions: "play none none none",
             },
@@ -83,9 +82,9 @@ export const Trainers: React.FC = () => {
   }, []);
 
   return (
-    <section id="trainer" ref={sectionRef} className="relative bg-bg">
+    <section id="how-it-works" ref={sectionRef} className="relative bg-bg">
       <div className="w-full px-16 py-15">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-12 mb-10 md:mb-14">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-12 mb-12 md:mb-16">
           <div ref={headerRef} className="shrink-0">
             <p className="text-primary text-xs md:text-sm font-normal tracking-wide mb-2.5">
               {eyebrow}
@@ -100,45 +99,36 @@ export const Trainers: React.FC = () => {
 
           <div ref={descRef} className="max-w-2xl md:text-right">
             <p className="text-zinc-400 text-sm md:text-[15px] font-normal leading-relaxed">
-              Train with passionate coaches who push your limits, perfect your form, and help{" "}
+              From choosing your plan to starting your workout, we make every step simple,{" "}
               <br className="hidden md:inline" />
-              you grow stronger every day.
+              supportive, and focused on your goals.
             </p>
           </div>
         </div>
 
         <div
-          ref={cardsRef}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-stretch"
+          ref={stepsRef}
+          className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-10 items-start"
         >
-          {trainers.map((trainer) => (
+          {steps.map((item) => (
             <div
-              key={trainer.id}
-              className="group relative flex flex-col overflow-hidden bg-secondary-bg cursor-pointer"
+              key={item.step}
+              className="group flex flex-col cursor-pointer"
             >
-              <div className="relative w-full h-115 md:h-130 overflow-hidden">
-                <Image
-                  src={trainer.image}
-                  alt={trainer.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover object-top grayscale contrast-[1.05] brightness-90 group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-out"
-                />
-
-                <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent pointer-events-none" />
-
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7 flex flex-col justify-end z-10">
-                  <p className="text-primary text-[11px] md:text-xs font-semibold tracking-wider uppercase mb-1">
-                    {trainer.role}
-                  </p>
-                  <h3 className="text-white text-xl md:text-2xl font-bold tracking-tight mb-1">
-                    {trainer.name}
-                  </h3>
-                  <p className="text-zinc-300 text-xs md:text-sm font-normal">
-                    {trainer.quote}
-                  </p>
-                </div>
+              <div className="flex items-center gap-4 mb-4">
+                <span className="outline-number text-5xl md:text-7xl font-semibold leading-none select-none tracking-tight">
+                  {item.step}
+                </span>
+                <div className="flex-1 h-px bg-white/10 group-hover:bg-primary/50 transition-colors duration-300" />
               </div>
+
+              <h3 className="text-white text-lg md:text-xl font-semibold tracking-wide mb-1.5 transition-colors">
+                {item.title}
+              </h3>
+
+              <p className="text-zinc-400 text-xs md:text-sm font-normal leading-relaxed">
+                {item.description}
+              </p>
             </div>
           ))}
         </div>
@@ -147,4 +137,4 @@ export const Trainers: React.FC = () => {
   );
 };
 
-export default Trainers;
+export default HowItWorks;

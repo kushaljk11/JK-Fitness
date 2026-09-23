@@ -7,4 +7,5 @@ export * from "./marquee";
 export * from "./facilities";
 export * from "./membership";
 export * from "./trainers";
+export * from "./howItWorks";
 export * from "./contact";

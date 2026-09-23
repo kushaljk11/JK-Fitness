@@ -9,6 +9,7 @@ import Marquee from "@/component/section/Marquee";
 import Facilities from "@/component/section/Facilities";
 import Membership from "@/component/section/Membership";
 import Trainers from "@/component/section/Trainers";
+import HowItWorks from "@/component/section/HowItWorks";
 import Faq from "@/component/section/Faq";
 import ContactDrawer from "@/component/shared/ContactDrawer";
 import SmoothScrollProvider from "@/component/shared/SmoothScrollProvider";
@@ -27,6 +28,7 @@ export default function Home() {
         <Facilities />
         <Membership onOpenContact={() => setIsContactOpen(true)} />
         <Trainers />
+        <HowItWorks />
         <Faq />
         <ContactDrawer
           isOpen={isContactOpen}
