@@ -95,7 +95,7 @@ export const Membership: React.FC<MembershipProps> = ({ onOpenContact }) => {
 
   return (
     <section id="membership" ref={sectionRef} className="relative bg-bg">
-      <div className="w-full px-16 py-15">
+      <div className="w-full px-6 md:px-16 py:8 md:py-15">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-12 mb-12 md:mb-16">
           <div ref={headerRef} className="shrink-0">
             <p className="text-primary text-xs md:text-sm font-normal tracking-wide mb-2.5">
@@ -122,11 +122,10 @@ export const Membership: React.FC<MembershipProps> = ({ onOpenContact }) => {
                 <button
                   key={cycle}
                   onClick={() => setBillingCycle(cycle)}
-                  className={`px-4 py-1.5 text-xs md:text-sm font-medium transition-colors cursor-pointer ${
-                    billingCycle === cycle
+                  className={`px-4 py-1.5 text-xs md:text-sm font-medium transition-colors cursor-pointer ${billingCycle === cycle
                       ? "bg-primary text-white"
                       : "text-zinc-400 hover:text-white"
-                  }`}
+                    }`}
                 >
                   {cycle}
                 </button>
@@ -181,11 +180,10 @@ export const Membership: React.FC<MembershipProps> = ({ onOpenContact }) => {
                             <XCircle className="w-4.5 h-4.5 text-primary/60 shrink-0 stroke-[1.8]" />
                           )}
                           <span
-                            className={`text-xs md:text-sm ${
-                              feature.included
+                            className={`text-xs md:text-sm ${feature.included
                                 ? "text-zinc-200 font-normal"
                                 : "text-zinc-500 font-normal"
-                            }`}
+                              }`}
                           >
                             {feature.text}
                           </span>
@@ -238,11 +236,10 @@ export const Membership: React.FC<MembershipProps> = ({ onOpenContact }) => {
                           <X className="w-4 h-4 text-zinc-600 shrink-0 stroke-2" />
                         )}
                         <span
-                          className={`text-xs md:text-sm ${
-                            feature.included
+                          className={`text-xs md:text-sm ${feature.included
                               ? "text-zinc-200 font-normal"
                               : "text-zinc-500 font-normal"
-                          }`}
+                            }`}
                         >
                           {feature.text}
                         </span>

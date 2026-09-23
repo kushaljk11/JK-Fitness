@@ -9,3 +9,4 @@ export * from "./membership";
 export * from "./trainers";
 export * from "./howItWorks";
 export * from "./contact";
+export * from "./gallery";

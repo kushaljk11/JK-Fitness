@@ -2,22 +2,23 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { Plus } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { trainersContent } from "@/data/trainers";
+import { galleryContent } from "@/data/gallery";
 
-export const Trainers: React.FC = () => {
-  const { eyebrow, heading, heading2, description, trainers } = trainersContent;
+export const Gallery: React.FC = () => {
+  const { eyebrow, heading, heading2, description, items } = galleryContent;
 
   const sectionRef = useRef<HTMLElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
   const descRef = useRef<HTMLDivElement | null>(null);
-  const cardsRef = useRef<HTMLDivElement | null>(null);
+  const gridRef = useRef<HTMLDivElement | null>(null);
 
-  const [activeTrainerId, setActiveTrainerId] = useState<number | null>(1);
+  const [activeCardId, setActiveCardId] = useState<number | null>(1);
 
-  const handleTrainerClick = (id: number) => {
-    setActiveTrainerId((prev) => (prev === id ? null : id));
+  const handleCardClick = (id: number) => {
+    setActiveCardId((prev) => (prev === id ? null : id));
   };
 
   useEffect(() => {
@@ -65,18 +66,18 @@ export const Trainers: React.FC = () => {
         );
       }
 
-      if (cardsRef.current) {
+      if (gridRef.current) {
         gsap.fromTo(
-          cardsRef.current.children,
+          gridRef.current.children,
           { opacity: 0, y: 35 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.65,
-            stagger: 0.12,
+            duration: 0.6,
+            stagger: 0.08,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: cardsRef.current,
+              trigger: gridRef.current,
               start: "top 80%",
               toggleActions: "play none none none",
             },
@@ -89,7 +90,7 @@ export const Trainers: React.FC = () => {
   }, []);
 
   return (
-    <section id="trainer" ref={sectionRef} className="relative bg-bg">
+    <section id="gallery" ref={sectionRef} className="relative bg-bg">
       <div className="w-full px-6 md:px-16 py-8 md:py-15">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-12 mb-10 md:mb-14">
           <div ref={headerRef} className="shrink-0">
@@ -106,52 +107,64 @@ export const Trainers: React.FC = () => {
 
           <div ref={descRef} className="max-w-2xl md:text-right">
             <p className="text-zinc-400 text-sm md:text-[15px] font-normal leading-relaxed">
-              Train with passionate coaches who push your limits, perfect your form, and help{" "}
+              Explore JK Fitness where powerful workouts, premium equipment, and an energetic{" "}
               <br className="hidden md:inline" />
-              you grow stronger every day.
+              atmosphere come together to keep you moving forward.
             </p>
           </div>
         </div>
 
         <div
-          ref={cardsRef}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-stretch"
+          ref={gridRef}
+          className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5"
         >
-          {trainers.map((trainer) => {
-            const isActive = activeTrainerId === trainer.id;
+          {items.map((item) => {
+            const isActive = activeCardId === item.id;
 
             return (
               <div
-                key={trainer.id}
-                onClick={() => handleTrainerClick(trainer.id)}
-                className="group relative flex flex-col overflow-hidden bg-secondary-bg cursor-pointer select-none"
+                key={item.id}
+                onClick={() => handleCardClick(item.id)}
+                className="group relative aspect-3/4 md:aspect-square w-full overflow-hidden bg-secondary-bg cursor-pointer select-none"
               >
-                <div className="relative w-full h-115 md:h-130 overflow-hidden">
-                  <Image
-                    src={trainer.image}
-                    alt={trainer.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className={`object-cover object-top transition-all duration-700 ease-out ${
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  className={`object-cover object-center transition-transform duration-500 ease-out ${
+                    isActive ? "scale-105" : "group-hover:scale-105"
+                  }`}
+                />
+
+                <div
+                  className={`pointer-events-none absolute inset-0 z-20 border-2 transition-colors duration-300 ${
+                    isActive
+                      ? "border-primary"
+                      : "border-transparent group-hover:border-primary"
+                  }`}
+                />
+
+                <div className="pointer-events-none absolute inset-0 z-15 flex items-center justify-center">
+                  <div
+                    className={`w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white transition-all duration-300 ${
                       isActive
-                        ? "grayscale-0 contrast-100 brightness-100 scale-105"
-                        : "grayscale contrast-[1.05] brightness-90 group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 group-hover:scale-105"
+                        ? "opacity-100 scale-100"
+                        : "opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100"
                     }`}
-                  />
-
-                  <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent pointer-events-none" />
-
-                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7 flex flex-col justify-end z-10">
-                    <p className="text-primary text-[11px] md:text-xs font-semibold tracking-wider uppercase mb-1">
-                      {trainer.role}
-                    </p>
-                    <h3 className="text-white text-xl md:text-2xl font-bold tracking-tight mb-1">
-                      {trainer.name}
-                    </h3>
-                    <p className="text-zinc-300 text-xs md:text-sm font-normal">
-                      {trainer.quote}
-                    </p>
+                  >
+                    <Plus className="w-5 h-5 stroke-[2.5]" />
                   </div>
+                </div>
+
+                <div
+                  className={`pointer-events-none absolute inset-x-0 bottom-0 z-15 bg-linear-to-t from-black/90 via-black/40 to-transparent p-5 pt-12 transition-opacity duration-300 flex items-end ${
+                    isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                  }`}
+                >
+                  <span className="text-white text-base md:text-lg font-medium tracking-wide">
+                    {item.title}
+                  </span>
                 </div>
               </div>
             );
@@ -162,4 +175,4 @@ export const Trainers: React.FC = () => {
   );
 };
 
-export default Trainers;
+export default Gallery;

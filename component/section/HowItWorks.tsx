@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { howItWorksContent } from "@/data/howItWorks";
@@ -12,6 +12,8 @@ export const HowItWorks: React.FC = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const descRef = useRef<HTMLDivElement | null>(null);
   const stepsRef = useRef<HTMLDivElement | null>(null);
+
+  const [activeStep, setActiveStep] = useState<string>("01");
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -83,7 +85,7 @@ export const HowItWorks: React.FC = () => {
 
   return (
     <section id="how-it-works" ref={sectionRef} className="relative bg-bg">
-      <div className="w-full px-16 py-15">
+      <div className="w-full px-6 md:px-16 py-8 md:py-15">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-12 mb-12 md:mb-16">
           <div ref={headerRef} className="shrink-0">
             <p className="text-primary text-xs md:text-sm font-normal tracking-wide mb-2.5">
@@ -110,27 +112,44 @@ export const HowItWorks: React.FC = () => {
           ref={stepsRef}
           className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-10 items-start"
         >
-          {steps.map((item) => (
-            <div
-              key={item.step}
-              className="group flex flex-col cursor-pointer"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <span className="outline-number text-5xl md:text-7xl font-semibold leading-none select-none tracking-tight">
-                  {item.step}
-                </span>
-                <div className="flex-1 h-px bg-white/10 group-hover:bg-primary/50 transition-colors duration-300" />
+          {steps.map((item) => {
+            const isStepActive = activeStep === item.step;
+
+            return (
+              <div
+                key={item.step}
+                onClick={() => setActiveStep(item.step)}
+                className="group flex flex-col cursor-pointer select-none"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <span
+                    className={`text-5xl md:text-7xl font-semibold leading-none select-none tracking-tight transition-all duration-300 ${
+                      isStepActive
+                        ? "outline-text-primary"
+                        : "outline-number group-hover:outline-text-primary"
+                    }`}
+                  >
+                    {item.step}
+                  </span>
+                  <div
+                    className={`flex-1 h-px transition-colors duration-300 ${
+                      isStepActive
+                        ? "bg-primary"
+                        : "bg-white/10 group-hover:bg-primary/50"
+                    }`}
+                  />
+                </div>
+
+                <h3 className="text-white text-lg md:text-xl font-semibold tracking-wide mb-1.5 transition-colors">
+                  {item.title}
+                </h3>
+
+                <p className="text-zinc-400 text-xs md:text-sm font-normal leading-relaxed">
+                  {item.description}
+                </p>
               </div>
-
-              <h3 className="text-white text-lg md:text-xl font-semibold tracking-wide mb-1.5 transition-colors">
-                {item.title}
-              </h3>
-
-              <p className="text-zinc-400 text-xs md:text-sm font-normal leading-relaxed">
-                {item.description}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
