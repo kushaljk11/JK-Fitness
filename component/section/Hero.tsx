@@ -42,10 +42,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
-      // Entrance animation timeline
       const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
-      // Image subtle scale & fade entrance
       if (imageContainerRef.current) {
         tl.fromTo(
           imageContainerRef.current,
@@ -55,7 +53,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
         );
       }
 
-      // Eyebrow entrance
       if (eyebrowRef.current) {
         tl.fromTo(
           eyebrowRef.current,
@@ -65,7 +62,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
         );
       }
 
-      // Heading entrance (stagger both heading lines)
       if (headingContainerRef.current) {
         const headings = headingContainerRef.current.children;
         tl.fromTo(
@@ -76,7 +72,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
         );
       }
 
-      // Subtext paragraph entrance
       if (subtextRef.current) {
         tl.fromTo(
           subtextRef.current,
@@ -86,7 +81,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
         );
       }
 
-      // CTA Buttons entrance
       if (ctaContainerRef.current) {
         const buttons = ctaContainerRef.current.children;
         tl.fromTo(
@@ -97,7 +91,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
         );
       }
 
-      // Stats bar entrance
       if (statsContainerRef.current) {
         tl.fromTo(
           statsContainerRef.current,
@@ -107,7 +100,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
         );
       }
 
-      // Desktop: Subtle parallax effect on hero image visual
       mm.add("(min-width: 768px)", () => {
         if (imageContainerRef.current && sectionRef.current) {
           gsap.to(imageContainerRef.current, {
@@ -132,7 +124,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
       ref={sectionRef}
       className="relative min-h-dvh flex flex-col justify-between pt-24 md:pt-28 overflow-hidden bg-bg"
     >
-      {/* Background Hero Image with parallax container */}
       <div
         ref={imageContainerRef}
         className="absolute inset-0 z-0 pointer-events-none will-change-transform"
@@ -146,17 +137,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
           className="object-cover object-[70%_25%] md:object-right opacity-90"
         />
 
-        {/* Gradient Overlays to seamlessly blend image and ensure high text contrast on mobile */}
         <div className="absolute inset-0 bg-bg/50 md:bg-transparent" />
         <div className="absolute inset-0 bg-linear-to-r from-bg via-bg/95 md:via-bg/70 to-transparent" />
         <div className="absolute inset-0 bg-linear-to-t from-bg via-transparent to-bg/50" />
         <div className="absolute top-0 left-0 right-0 h-28 bg-linear-to-b from-bg to-transparent" />
       </div>
 
-      {/* Main Hero Content Area */}
       <div className="relative z-10 w-full px-6 md:px-16 flex-1 flex flex-col justify-center py-8 md:py-20">
         <div className="max-w-2xl">
-          {/* Eyebrow text */}
           <p
             ref={eyebrowRef}
             className="text-zinc-300 text-sm md:text-base font-normal tracking-wide mb-2 md:mb-4 will-change-transform"
@@ -164,7 +152,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
             {eyebrow}
           </p>
 
-          {/* Heading with Trainex Font */}
           <div
             ref={headingContainerRef}
             className="font-trainex tracking-wide space-y-1 md:space-y-2 mb-4 md:mb-6"
@@ -177,7 +164,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
             </h2>
           </div>
 
-          {/* Subtitle */}
           <p
             ref={subtextRef}
             className="text-zinc-400 text-sm md:text-base font-normal leading-relaxed max-w-lg mb-6 md:mb-10 will-change-transform"
@@ -185,7 +171,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
             {subtext}
           </p>
 
-          {/* Reusable CTA Buttons */}
           <div
             ref={ctaContainerRef}
             className="flex flex-col md:flex-row items-stretch md:items-center gap-3 md:gap-4"
@@ -211,10 +196,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
         </div>
       </div>
 
-      {/* Bottom Floating Stats Bar */}
       <div
         ref={statsContainerRef}
-        className="relative z-10 w-full px-6 md:px-16 pb-5 md:pb-8 will-change-transform"
+        className="relative z-10 w-full px-6 md:px-16 pb-0 will-change-transform"
       >
         <div className="w-full bg-secondary-bg border border-white/5 py-4 md:py-5 px-4 md:px-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0">

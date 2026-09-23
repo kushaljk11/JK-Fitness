@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Navbar from "@/component/layout/Navbar";
 import Hero from "@/component/section/Hero";
 import WhyUs from "@/component/section/WhyUs";
+import OurStory from "@/component/section/OurStory";
 import Faq from "@/component/section/Faq";
 import ContactDrawer from "@/component/shared/ContactDrawer";
 import SmoothScrollProvider from "@/component/shared/SmoothScrollProvider";
@@ -17,6 +18,7 @@ export default function Home() {
         <Navbar onOpenContact={() => setIsContactOpen(true)} />
         <Hero onOpenContact={() => setIsContactOpen(true)} />
         <WhyUs />
+        <OurStory />
         <Faq />
         <ContactDrawer
           isOpen={isContactOpen}

@@ -22,7 +22,6 @@ export default function Faq() {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // Animate Left Heading Column
       if (headingRef.current) {
         gsap.fromTo(
           headingRef.current.children,
@@ -42,7 +41,6 @@ export default function Faq() {
         );
       }
 
-      // Animate Right Accordion Items with Stagger
       if (accordionContainerRef.current) {
         const accordionItems = accordionContainerRef.current.children;
         gsap.fromTo(
@@ -69,8 +67,7 @@ export default function Faq() {
 
   return (
     <section ref={sectionRef} className="bg-bg">
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 px-16 py-10 md:py-14">
-        {/* Left: heading */}
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 px-6 md:px-16 py-15">
         <div ref={headingRef}>
           <p className="text-sm font-medium text-primary">{eyebrow}</p>
           <h2 className="mt-3 text-3xl font-semibold text-white md:text-5xl">
@@ -82,7 +79,6 @@ export default function Faq() {
           <p className="mt-2 max-w-sm text-sm text-white/60">{subtext}</p>
         </div>
 
-        {/* Right: accordion */}
         <div ref={accordionContainerRef} className="border-t border-white/10">
           {items.map((item, i) => (
             <AccordionItem
