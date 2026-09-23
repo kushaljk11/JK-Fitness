@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Menu, X } from "lucide-react";
@@ -21,11 +21,28 @@ const navItems: NavItem[] = [
 ];
 
 export const Navbar: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-bg/85 backdrop-blur-md border-b border-white/5 font-sans">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-sans ${
+        isScrolled || isMobileMenuOpen
+          ? "bg-bg/60 backdrop-blur-md border-b border-white/10"
+          : "bg-transparent border-b border-transparent"
+      }`}
+    >
       <div className="w-full px-6 md:px-16">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -116,7 +133,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Drawer (Below MD) */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-secondary-bg border-b border-zinc-800 px-6 py-5 space-y-4">
+        <div className="md:hidden bg-secondary-bg/95 backdrop-blur-xl border-b border-zinc-800 px-6 py-5 space-y-4">
           <div className="flex flex-col space-y-3">
             {navItems.map((item) => (
               <Link

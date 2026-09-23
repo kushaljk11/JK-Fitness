@@ -2,9 +2,11 @@
 
 @theme {
   --color-primary: #C72C41;
+  --color-bg: #020302;
   --color-secondary: #0C0C0C;
   --color-secondary-bg: #0C0C0C;
-  --color-bg: #020302;
+  --font-trainex: var(--font-trainex), sans-serif;
+  --font-poppins: var(--font-poppins), sans-serif;
 }
 
 @layer base {
@@ -18,4 +20,14 @@
     color: #ffffff;
     font-family: var(--font-poppins), sans-serif;
   }
+}
+
+.font-trainex {
+  font-family: var(--font-trainex), sans-serif;
+}
+
+.outline-text-primary {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #C72C41;
+  paint-order: stroke fill;
 }
