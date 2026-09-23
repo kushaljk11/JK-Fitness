@@ -14,7 +14,7 @@ export const Trainers: React.FC = () => {
   const descRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<HTMLDivElement | null>(null);
 
-  const [activeTrainerId, setActiveTrainerId] = useState<number | null>(1);
+  const [activeTrainerId, setActiveTrainerId] = useState<number | null>(null);
 
   const handleTrainerClick = (id: number) => {
     setActiveTrainerId((prev) => (prev === id ? null : id));

@@ -10,3 +10,6 @@ export * from "./trainers";
 export * from "./howItWorks";
 export * from "./contact";
 export * from "./gallery";
+export * from "./testimonials";
+export * from "./cta";
+export * from "./footer";

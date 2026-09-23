@@ -27,7 +27,7 @@ export interface ContactContent {
 export const contactContent: ContactContent = {
   title: "Contact Us On WhatsApp",
   subtitle: "Fill the form, and we'll reach out on WhatsApp.",
-  whatsappNumber: "9779800000000",
+  whatsappNumber: "9779804060401",
   labels: {
     fullName: "Full name",
     email: "Email Address",
@@ -39,7 +39,7 @@ export const contactContent: ContactContent = {
   placeholders: {
     fullName: "JK Fitness",
     email: "jkfitness@gmail.com",
-    contact: "+977 9800000000",
+    contact: "+977 9804060401",
   },
   topics: [
     {

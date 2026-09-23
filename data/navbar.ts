@@ -19,13 +19,13 @@ export const navbarContent: NavbarContent = {
     alt: "JK FITNESS",
   },
   navItems: [
-    { label: "Home", href: "#home" },
+    { label: "Home", href: "/" },
     { label: "About", href: "#about" },
     { label: "Facility", href: "#facility" },
     { label: "Membership", href: "#membership" },
     { label: "Trainer", href: "#trainer" },
     { label: "Contact", href: "#contact" },
   ],
-  ctaButtonText: "Join Now",
+  ctaButtonText: "Start Your Journey",
   locationHref: "#contact",
 };

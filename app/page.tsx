@@ -11,7 +11,9 @@ import Membership from "@/component/section/Membership";
 import Trainers from "@/component/section/Trainers";
 import HowItWorks from "@/component/section/HowItWorks";
 import Gallery from "@/component/section/Gallery";
+import Testimonials from "@/component/section/Testimonials";
 import Faq from "@/component/section/Faq";
+import CtaBanner from "@/component/section/CtaBanner";
 import ContactDrawer from "@/component/shared/ContactDrawer";
 import SmoothScrollProvider from "@/component/shared/SmoothScrollProvider";
 import Footer from "@/component/layout/Footer";
@@ -32,6 +34,8 @@ export default function Home() {
         <Trainers />
         <HowItWorks />
         <Gallery />
+        <Testimonials />
+        <CtaBanner onOpenContact={() => setIsContactOpen(true)} />
         <Faq />
         <ContactDrawer
           isOpen={isContactOpen}

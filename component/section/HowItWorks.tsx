@@ -13,7 +13,7 @@ export const HowItWorks: React.FC = () => {
   const descRef = useRef<HTMLDivElement | null>(null);
   const stepsRef = useRef<HTMLDivElement | null>(null);
 
-  const [activeStep, setActiveStep] = useState<string>("01");
+  const [activeStep, setActiveStep] = useState<string | null>(null);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -84,7 +84,7 @@ export const HowItWorks: React.FC = () => {
   }, []);
 
   return (
-    <section id="how-it-works" ref={sectionRef} className="relative bg-bg">
+    <section id="how-it-works" ref={sectionRef} className="relative bg-secondary-bg">
       <div className="w-full px-6 md:px-16 py-8 md:py-15">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-12 mb-12 md:mb-16">
           <div ref={headerRef} className="shrink-0">

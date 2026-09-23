@@ -121,6 +121,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
 
   return (
     <section
+      id="home"
       ref={sectionRef}
       className="relative min-h-dvh flex flex-col justify-between pt-24 md:pt-28 overflow-hidden bg-bg"
     >

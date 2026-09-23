@@ -15,7 +15,7 @@ export const Facilities: React.FC = () => {
   const descRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<HTMLDivElement | null>(null);
 
-  const [activeFacilityId, setActiveFacilityId] = useState<number | null>(1);
+  const [activeFacilityId, setActiveFacilityId] = useState<number | null>(null);
 
   const handleFacilityClick = (id: number) => {
     setActiveFacilityId((prev) => (prev === id ? null : id));
