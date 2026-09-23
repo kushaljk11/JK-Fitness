@@ -5,25 +5,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Menu, X } from "lucide-react";
 import Button from "@/component/ui/Button";
+import { navbarContent } from "@/data/navbar";
 
-interface NavItem {
-  label: string;
-  href: string;
+interface NavbarProps {
+  onOpenContact?: () => void;
 }
 
-const navItems: NavItem[] = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Facility", href: "#facility" },
-  { label: "Membership", href: "#membership" },
-  { label: "Trainer", href: "#trainer" },
-  { label: "Contact", href: "#contact" },
-];
-
-export const Navbar: React.FC = () => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
+  const { logo, navItems, ctaButtonText, locationHref } = navbarContent;
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState("Home");
+  const [activeItem, setActiveItem] = useState(navItems[0]?.label || "Home");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,11 +29,10 @@ export const Navbar: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-sans ${
-        isScrolled || isMobileMenuOpen
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-sans ${isScrolled || isMobileMenuOpen
           ? "bg-bg/60 backdrop-blur-md border-b border-white/10"
           : "bg-transparent border-b border-transparent"
-      }`}
+        }`}
     >
       <div className="w-full px-6 md:px-16">
         <div className="flex items-center justify-between h-20">
@@ -49,8 +40,8 @@ export const Navbar: React.FC = () => {
           <Link href="#home" className="flex items-center shrink-0">
             <div className="relative h-12 w-36 md:h-14 md:w-44 flex items-center">
               <Image
-                src="/assets/logo.png"
-                alt="JK FITNESS"
+                src={logo.src}
+                alt={logo.alt}
                 fill
                 priority
                 sizes="176px"
@@ -84,7 +75,7 @@ export const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center space-x-4">
             {/* Location Icon */}
             <Link
-              href="#contact"
+              href={locationHref}
               className="text-white hover:text-primary transition-colors p-1"
               aria-label="Location"
             >
@@ -96,19 +87,19 @@ export const Navbar: React.FC = () => {
 
             {/* Reusable Button */}
             <Button
-              href="#membership"
+              onClick={onOpenContact}
               variant="outline"
               size="md"
-              className="px-6 py-2 text-lg font-medium"
+              className="px-6 py-2 text-lg font-medium cursor-pointer"
             >
-              Join Now
+              {ctaButtonText}
             </Button>
           </div>
 
           {/* Mobile Menu Toggle (Below MD) */}
           <div className="flex md:hidden items-center space-x-4">
             <Link
-              href="#contact"
+              href={locationHref}
               className="text-white hover:text-primary p-1"
               aria-label="Location"
             >
@@ -118,7 +109,7 @@ export const Navbar: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white p-1 focus:outline-none"
+              className="text-white p-1 focus:outline-none cursor-pointer"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
@@ -158,14 +149,16 @@ export const Navbar: React.FC = () => {
 
           <div className="pt-3 border-t border-zinc-800">
             <Button
-              href="#membership"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                onOpenContact?.();
+              }}
               variant="outline"
               size="md"
               fullWidth
-              className="font-normal"
-              onClick={() => setIsMobileMenuOpen(false)}
+              className="font-normal cursor-pointer"
             >
-              Join Now
+              {ctaButtonText}
             </Button>
           </div>
         </div>
